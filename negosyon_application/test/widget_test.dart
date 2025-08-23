@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:NegosyOn/main.dart';
+import 'package:NegosyOn/business_info.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
