@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
 }
 
 class LoanRecommendationPage extends StatefulWidget {
+  const LoanRecommendationPage({super.key});
+  
   @override
   _LoanRecommendationPageState createState() => _LoanRecommendationPageState();
 }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-void main() {
-  runApp(MyApp());
-}
+import 'business_form_end.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +10,6 @@ class MyApp extends StatelessWidget {
       title: 'ESG Readiness',
       theme: ThemeData(
         primaryColor: Color(0xFFB11116),
-        fontFamily: 'SF Pro Display',
         textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         ),
@@ -30,7 +26,7 @@ class ESGReadinessPage extends StatefulWidget {
 
 class _ESGReadinessPageState extends State<ESGReadinessPage> {
   final _formKey = GlobalKey<FormState>();
-  
+
   // Environmental (E)
   bool? usesEcoFriendlyPackaging;
   List<String> selectedWasteManagement = [];
@@ -43,7 +39,7 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
     'Water Conservation',
     'Sustainable Sourcing and Supply Chain'
   ];
-  
+
   // Social (S)
   String? numberOfEmployees;
   final List<String> employeeOptions = [
@@ -54,12 +50,12 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
     'None'
   ];
   bool? employeesHaveContracts;
-  
+
   // Governance (G)
   bool? isBusinessRegistered;
   bool? keepsFinancialRecords;
   bool? separatesPersonalBusinessMoney;
-  
+
   // Privacy Agreement
   bool agreeToPrivacyPolicy = false;
 
@@ -72,19 +68,17 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.red, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: Color(0xFFB11116), size: 20),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Back',
-          style: TextStyle(
-            color: Colors.red,
+          style: GoogleFonts.poppins(
+            color: Color(0xFFB11116),
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
         ),
-        centerTitle: false,
-        titleSpacing: -10,
       ),
       body: Column(
         children: [
@@ -99,7 +93,7 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                     // Title and Step
                     Text(
                       'ESG Readiness',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -108,28 +102,24 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                     SizedBox(height: 8),
                     Text(
                       'Step 3 of 3',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.red,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        color: Color(0xFFB11116),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    
                     SizedBox(height: 30),
-                    
-                    // Environmental (E) Section
+
+                    // Environmental (E)
                     Text(
                       'Environmental (E)',
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Color(0xFF1A1A1A),
                       ),
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Eco-friendly packaging
                     _buildLabel('Do you use eco-friendly packaging?'),
                     _buildRadioGroup(
                       value: usesEcoFriendlyPackaging,
@@ -138,59 +128,44 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           usesEcoFriendlyPackaging = value;
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Waste management practices
                     _buildLabel('What is/are your waste management practices?'),
                     _buildCheckboxGroup(
                       items: wasteManagementOptions,
                       selectedItems: selectedWasteManagement,
                       onChanged: (item, isSelected) {
                         setState(() {
-                          if (isSelected) {
-                            selectedWasteManagement.add(item);
-                          } else {
-                            selectedWasteManagement.remove(item);
-                          }
+                          isSelected
+                              ? selectedWasteManagement.add(item)
+                              : selectedWasteManagement.remove(item);
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 30),
-                    
-                    // Social (S) Section
+
+                    // Social (S)
                     Text(
                       'Social (S)',
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Color(0xFF1A1A1A),
                       ),
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Number of employees
                     _buildLabel('How many employees do you have?'),
                     _buildDropdown(
                       value: numberOfEmployees,
                       hint: 'Number of Employees',
                       items: employeeOptions,
-                      isRequired: true,
                       onChanged: (value) {
                         setState(() {
                           numberOfEmployees = value;
                         });
                       },
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Employee contracts
                     _buildLabel('Do your employees have formal contracts or benefits?'),
                     _buildRadioGroup(
                       value: employeesHaveContracts,
@@ -199,24 +174,19 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           employeesHaveContracts = value;
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 30),
-                    
-                    // Governance (G) Section
+
+                    // Governance (G)
                     Text(
                       'Governance (G)',
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Color(0xFF1A1A1A),
                       ),
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Business registration
                     _buildLabel('Is your business registered (DTI/SEC/Barangay)?'),
                     _buildRadioGroup(
                       value: isBusinessRegistered,
@@ -225,12 +195,8 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           isBusinessRegistered = value;
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Financial records
                     _buildLabel('Do you keep written or digital financial records?'),
                     _buildRadioGroup(
                       value: keepsFinancialRecords,
@@ -239,12 +205,8 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           keepsFinancialRecords = value;
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 20),
-                    
-                    // Separate personal and business money
                     _buildLabel('Do you separate personal and business money?'),
                     _buildRadioGroup(
                       value: separatesPersonalBusinessMoney,
@@ -253,12 +215,10 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           separatesPersonalBusinessMoney = value;
                         });
                       },
-                      isRequired: true,
                     ),
-                    
                     SizedBox(height: 30),
-                    
-                    // Privacy Policy Agreement
+
+                    // Privacy Policy
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -267,18 +227,14 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                           height: 20,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: agreeToPrivacyPolicy ? Colors.red : Color(0xFFE5E7EB),
+                              color: agreeToPrivacyPolicy ? Color(0xFFB11116) : Color(0xFFE5E7EB),
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(4),
-                            color: agreeToPrivacyPolicy ? Colors.red : Colors.transparent,
+                            color: agreeToPrivacyPolicy ? Color(0xFFB11116) : Colors.transparent,
                           ),
                           child: agreeToPrivacyPolicy
-                              ? Icon(
-                                  Icons.check,
-                                  size: 14,
-                                  color: Colors.white,
-                                )
+                              ? Icon(Icons.check, size: 14, color: Colors.white)
                               : null,
                         ),
                         SizedBox(width: 12),
@@ -291,122 +247,108 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                             },
                             child: Text(
                               '"I agree to the use of my information to assess my business\' loan readiness."',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black,
-                                height: 1.4,
-                              ),
+                              style: GoogleFonts.poppins(fontSize: 14, color: Color(0xFF1A1A1A), height: 1.4),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    
                     SizedBox(height: 15),
-                    
-                    // Privacy Policy Link
                     GestureDetector(
                       onTap: () {
-                        // Handle privacy policy click
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Opening Privacy Policy...')),
                         );
                       },
-                      child: Text(
-                        'Click here to view Privacy Policy',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
+                      child: RichText(
+                        text: TextSpan(
+                          style: GoogleFonts.poppins(fontSize: 16, color: Color(0xFF1A1A1A)), // default text style
+                          children: [
+                            TextSpan(text: 'Click here to view '), // normal text
+                            TextSpan(
+                              text: 'Privacy Policy', // link text
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    
                     SizedBox(height: 40),
                   ],
                 ),
               ),
             ),
           ),
-          
+
           // Next Button
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(20),
             child: ElevatedButton(
               onPressed: () {
-                // Validate form before proceeding
                 if (_validateForm()) {
-                  // All required fields are filled
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Form completed successfully!')),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoanEndScreen(),
+                    ),
                   );
                 } else {
-                  // Show validation errors
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Please fill in all required fields and agree to privacy policy'),
+                      content: Text(
+                        'Please complete all required fields',
+                        style: GoogleFonts.poppins(),
+                      ),
                       backgroundColor: Colors.red,
                     ),
                   );
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFDC2626),
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: Color(0xFFB11116),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                elevation: 0,
               ),
               child: Text(
                 'Next',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
-  
+
   Widget _buildLabel(String text) {
     return Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: RichText(
         text: TextSpan(
           children: [
-            TextSpan(
-              text: '* ',
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            TextSpan(
-              text: text,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            TextSpan(text: '* ', style: GoogleFonts.poppins(color: Colors.red, fontSize: 16, fontWeight: FontWeight.w500)),
+            TextSpan(text: text, style: GoogleFonts.poppins(color: Color(0xFF1A1A1A), fontSize: 16, fontWeight: FontWeight.w500)),
           ],
         ),
       ),
     );
   }
-  
+
   Widget _buildCheckboxGroup({
     required List<String> items,
     required List<String> selectedItems,
     required Function(String, bool) onChanged,
-    bool isRequired = false,
   }) {
     return Column(
       children: items.map((item) {
@@ -420,31 +362,19 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
                 height: 20,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: isSelected ? Colors.red : Color(0xFFE5E7EB),
+                    color: isSelected ? Color(0xFFB11116) : Color(0xFFE5E7EB),
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(4),
-                  color: isSelected ? Colors.red : Colors.transparent,
+                  color: isSelected ? Color(0xFFB11116) : Colors.transparent,
                 ),
-                child: isSelected
-                    ? Icon(
-                        Icons.check,
-                        size: 14,
-                        color: Colors.white,
-                      )
-                    : null,
+                child: isSelected ? Icon(Icons.check, size: 14, color: Colors.white) : null,
               ),
               SizedBox(width: 12),
               Expanded(
                 child: GestureDetector(
                   onTap: () => onChanged(item, !isSelected),
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: Text(item, style: GoogleFonts.poppins(fontSize: 16, color: Color(0xFF1A1A1A))),
                 ),
               ),
             ],
@@ -453,13 +383,12 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
       }).toList(),
     );
   }
-  
+
   Widget _buildDropdown({
     required String? value,
     required String hint,
     required List<String> items,
     required Function(String?) onChanged,
-    bool isRequired = false,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -468,52 +397,28 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
       ),
       child: DropdownButtonFormField<String>(
         value: value,
-        validator: isRequired ? (value) {
-          if (value == null || value.isEmpty) {
-            return 'This field is required';
-          }
-          return null;
-        } : null,
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: TextStyle(
-            color: Color(0xFF9CA3AF),
-            fontSize: 16,
-          ),
+          hintStyle: GoogleFonts.poppins(color: Color(0xFF9CA3AF), fontSize: 16),
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(16),
-          errorStyle: TextStyle(
-            color: Colors.red,
-            fontSize: 12,
-          ),
         ),
-        items: items.map((String item) {
-          return DropdownMenuItem<String>(
-            value: item,
-            child: Text(
-              item,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
-            ),
-          );
-        }).toList(),
+        items: items.map((item) => DropdownMenuItem<String>(
+          value: item,
+          child: Text(item, style: GoogleFonts.poppins(fontSize: 16, color: Color(0xFF1A1A1A))),
+        )).toList(),
         onChanged: onChanged,
-        icon: Icon(
-          Icons.keyboard_arrow_down,
-          color: Color(0xFF9CA3AF),
-        ),
+        icon: Icon(Icons.keyboard_arrow_down, color: Color(0xFF9CA3AF)),
       ),
     );
   }
-  
+
   Widget _buildRadioGroup({
     required bool? value,
     required Function(bool?) onChanged,
-    bool isRequired = false,
   }) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // align text properly
       children: [
         Row(
           children: [
@@ -521,14 +426,13 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
               value: true,
               groupValue: value,
               onChanged: onChanged,
-              activeColor: Colors.red,
+              activeColor: Color(0xFFB11116),
+              visualDensity: VisualDensity(horizontal: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, 
             ),
             Text(
               'Yes',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
+              style: GoogleFonts.poppins(fontSize: 16, color: Color(0xFF1A1A1A)),
             ),
           ],
         ),
@@ -538,56 +442,26 @@ class _ESGReadinessPageState extends State<ESGReadinessPage> {
               value: false,
               groupValue: value,
               onChanged: onChanged,
-              activeColor: Colors.red,
+              activeColor: Color(0xFFB11116),
+              visualDensity: VisualDensity(horizontal: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
             Text(
               'No',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
+              style: GoogleFonts.poppins(fontSize: 16, color: Color(0xFF1A1A1A)),
             ),
           ],
         ),
       ],
     );
   }
-  
+
   bool _validateForm() {
     bool isValid = true;
-    
-    // Environmental validation
-    if (usesEcoFriendlyPackaging == null) {
-      isValid = false;
-    }
-    if (selectedWasteManagement.isEmpty) {
-      isValid = false;
-    }
-    
-    // Social validation
-    if (numberOfEmployees == null) {
-      isValid = false;
-    }
-    if (employeesHaveContracts == null) {
-      isValid = false;
-    }
-    
-    // Governance validation
-    if (isBusinessRegistered == null) {
-      isValid = false;
-    }
-    if (keepsFinancialRecords == null) {
-      isValid = false;
-    }
-    if (separatesPersonalBusinessMoney == null) {
-      isValid = false;
-    }
-    
-    // Privacy policy agreement
-    if (!agreeToPrivacyPolicy) {
-      isValid = false;
-    }
-    
+    if (usesEcoFriendlyPackaging == null || selectedWasteManagement.isEmpty) isValid = false;
+    if (numberOfEmployees == null || employeesHaveContracts == null) isValid = false;
+    if (isBusinessRegistered == null || keepsFinancialRecords == null || separatesPersonalBusinessMoney == null) isValid = false;
+    if (!agreeToPrivacyPolicy) isValid = false;
     return isValid;
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'business_info.dart';
+import 'loan_recommendation.dart';
+import 'no_recommendation.dart';
 
-class LoanReadyScreen extends StatelessWidget {
-  const LoanReadyScreen({super.key});
+class LoanEndScreen extends StatelessWidget {
+  const LoanEndScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,6 @@ class LoanReadyScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        scrolledUnderElevation: 0,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -41,17 +41,17 @@ class LoanReadyScreen extends StatelessWidget {
               SizedBox(
                 height: 280,
                 child: Image.asset(
-                  'assets/business-form_start.png',
+                  'assets/business-form_end.png',
                   fit: BoxFit.contain,
                 ),
               ),
               const Spacer(flex: 1),
               // Title
               Text(
-                "Let’s check how loan-ready your business is",
+                "Loan Readiness Check Done!",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.w700,
                   color: Color(0xFF1A1A1A),
                   height: 1.2,
@@ -60,27 +60,41 @@ class LoanReadyScreen extends StatelessWidget {
               const SizedBox(height: 16),
               // Subtitle
               Text(
-                'Answer a few quick questions to see the best loan options and tips for your business.',
+                'Check your loan matches and tips to grow smarter.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFF1A1A1A),
+                  color: Color(0xFF666666),
                   height: 1.4,
                 ),
               ),
               const Spacer(flex: 2),
-              // Check Now Button
+              // View Recommendation Button
               Container(
                 width: double.infinity,
                 height: 56,
                 margin: const EdgeInsets.only(bottom: 30),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => BusinessInformationPage()),
-                    );
+                    // TODO: Replace this with your actual logic from form answers
+                    bool hasRecommendation = true; // Example: true if a match exists
+
+                    if (hasRecommendation) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoanRecommendationPage(),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NoRecommendationPage(),
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFB11116),
@@ -91,7 +105,7 @@ class LoanReadyScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Check Now',
+                    'View Recommendation',
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -103,6 +117,32 @@ class LoanReadyScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+// Example usage in a MaterialApp
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Loan Ready App',
+      theme: ThemeData(
+        primaryColor: Color(0xFFB11116),
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const LoanEndScreen(),
     );
   }
 }
